@@ -1,5 +1,6 @@
 plugins {
   id "org.springframework.boot" version "1.5.1.RELEASE"
+  id "org.flywaydb.flyway" version "4.1.1"
 }
 
 task wrapper(type: Wrapper) {
@@ -7,6 +8,14 @@ task wrapper(type: Wrapper) {
 }
 
 ext {
+}
+
+flyway {
+  url = "jdbc:mysql://localhost:3306/spring_rest?useSSL=true&characterEncoding=UTF-8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
+  driver = "com.mysql.cj.jdbc.Driver"
+  user = "root"
+  password = ""
+
 }
 
 apply plugin: "java"
@@ -28,6 +37,7 @@ dependencies {
   }
   compile("org.springframework.boot:spring-boot-starter-jetty")
   compile("org.springframework.boot:spring-boot-starter-jdbc")
+  compile("org.springframework.boot:spring-boot-starter-security")
   compile("org.springframework.boot:spring-boot-devtools")
   compile("org.springframework.session:spring-session")
   testCompile("junit:junit:4.12")

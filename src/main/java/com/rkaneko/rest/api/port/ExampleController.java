@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ExampleController {
-    @RequestMapping(path = "example", method = RequestMethod.POST)
+    @RequestMapping(path = "/api/example", method = RequestMethod.POST)
     public ExampleOutputForm run(@Validated @RequestBody ExampleInputForm inputForm) {
         return new ExampleOutputForm(inputForm.getName());
     }
