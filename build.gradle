@@ -1,0 +1,45 @@
+plugins {
+  id "org.springframework.boot" version "1.5.1.RELEASE"
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "3.3"
+}
+
+ext {
+  springSessionVersion = "1.3.0.RELEASE"
+}
+
+apply plugin: "java"
+apply plugin: "idea"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile("org.spring.framework.boot:spring-boot-starter-web")
+  compile("org.spring.framework.boot:spring-boot-starter-jdbc")
+  compile("org.spring.framework.boot:spring-boot-devtools")
+  compile("org.spring.framework.session:spring-session:${springSessionVersion}")
+  testCompile("junit:junit:4.12")
+  testCompile("org.assertj:assertj-core:3.6.2")
+}
+
+apply plugin: "org.springframework.boot"
+
+springBoot {
+  backupSource = false
+}
+
+bootRun {
+  addResources = true
+}
+
+bootRepackage {
+  mainClass = "com.rkaneko.rest.Application"
+  executable = true
+}
